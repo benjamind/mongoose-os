@@ -330,6 +330,5 @@ void app_main(void) {
   s_mgos_mux = xSemaphoreCreateRecursiveMutex();
   setvbuf(stdout, NULL, _IOLBF, 256);
   setvbuf(stderr, NULL, _IOLBF, 256);
-  xTaskCreate(mgos_task, "mgos", MGOS_TASK_STACK_SIZE, NULL, MGOS_TASK_PRIORITY,
-              NULL);
+  xTaskCreatePinnedToCore(mgos_task, "mgos", MGOS_TASK_STACK_SIZE, NULL, MGOS_TASK_PRIORITY, NULL, 0);
 }
